@@ -3,7 +3,7 @@ import { auth } from "./firebase";
 import "./Home.css";
 import StorageSlider from "./StorageSlider";
 import bgImage from "./assets/background.jpg";
-import logo from "./assets/background2.jpg";
+import logo from "./assets/fnlogo.jpg";
 // for database options
 import image1 from "./assets/image1.jpg";
 import image2 from "./assets/image2.jpg";

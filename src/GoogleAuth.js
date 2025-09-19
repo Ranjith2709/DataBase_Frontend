@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { auth, googleProvider } from "./firebase";
 import { useNavigate } from "react-router-dom"; // ✅ Add this
 import "./GoogleAuth.css";
-import bgImage from "./assets/background2.jpg";
+import bgImage from "./assets/coverl.jpg";
 
 const GoogleAuth = () => {
   const [user, setUser] = useState(null);

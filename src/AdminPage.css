@@ -1,0 +1,97 @@
+/* AdminPage.css */
+
+.admin-container {
+  padding: 40px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.admin-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.admin-header h1 {
+  font-size: 2.5rem;
+  color: #343a40;
+  margin-bottom: 10px;
+}
+
+.admin-header h2 {
+  font-size: 1.5rem;
+  color: #6c757d;
+}
+
+.table-container {
+  overflow-x: auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.users-table th,
+.users-table td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.users-table thead {
+  background-color: #43b9ec;
+  color: #fff;
+  border-radius: 10px 10px 0 0;
+}
+
+.users-table tbody tr {
+  border-bottom: 1px solid #dee2e6;
+  transition: background 0.3s;
+}
+
+.users-table tbody tr:hover {
+  background-color: #f1f3f5;
+}
+
+.users-table th {
+  font-weight: 600;
+}
+
+.users-table td {
+  color: #495057;
+}
+
+.no-users {
+  text-align: center;
+  padding: 30px;
+  color: #6c757d;
+  font-size: 1.1rem;
+}
+
+
+/* Back button styling */
+.back-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.back-btn {
+  padding: 12px 25px;
+  background-color: #43b9ec;
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.back-btn:hover {
+  background-color: #43b9ec;
+}

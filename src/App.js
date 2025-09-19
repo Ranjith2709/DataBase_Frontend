@@ -23,12 +23,13 @@ const App = () => {
  
   return (
     <Router>
-     <Routes>
+    <Routes>
   <Route path="/auth" element={<GoogleAuth />} />
   <Route path="/" element={user ? <Home user={user} /> : <Navigate to="/auth" />} />
-  <Route path="/admin" element={<AdminPage />} />
+  <Route path="/admin" element={user ? <AdminPage user={user} /> : <Navigate to="/auth" />} />
   <Route path="/contact" element={<ContactPage />} />
 </Routes>
+
     </Router>
   );
 };

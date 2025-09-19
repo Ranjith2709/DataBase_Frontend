@@ -1,0 +1,89 @@
+/* ContactPage.css */
+
+.contact-container {
+  padding: 60px 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  color: #343a40;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.contact-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #43b9ec;
+}
+
+.contact-header p {
+  font-size: 1.2rem;
+  color: #6c757d;
+}
+
+.contact-card {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 30px 40px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.contact-card h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #343a40;
+}
+
+.contact-card p,
+.contact-card span {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  display: block;
+  color: #495057;
+}
+
+.contact-card .phone,
+.contact-card .hours {
+  font-weight: 600;
+}
+
+.contact-card .address {
+  margin-bottom: 15px;
+}
+
+.contact-card .hours-info {
+  margin-left: 10px;
+  color: #6c757d;
+}
+
+@media (max-width: 768px) {
+  .contact-card {
+    padding: 20px;
+  }
+}
+/* Back button styling */
+.back-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.back-btn {
+  padding: 12px 25px;
+  background-color: #43b9ec;
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.back-btn:hover {
+  background-color: #43b9ec;
+}
