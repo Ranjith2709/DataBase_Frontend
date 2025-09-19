@@ -25,6 +25,32 @@ const Home = ({ user }) => {
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
   const closeDropdown = () => setDropdownOpen(false);
 
+const handlePasswordSubmit = async () => {
+  if (!password) {
+    setError("Password is required");
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:5000/api/admin/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password }),
+    });
+
+    if (res.ok) {
+      setShowPasswordModal(false); // close modal
+      navigate("/admin"); // go to admin page
+    } else {
+      setError("❌ Incorrect password!");
+    }
+  } catch (err) {
+    console.error(err);
+    setError("⚠️ Server error, please try again.");
+  }
+};
+
+
   const signOut = async () => {
     try {
       await auth.signOut();
@@ -34,20 +60,35 @@ const Home = ({ user }) => {
   };
 
   // 🔹 Show modal instead of raw prompt
-  const handleAdminClick = () => {
+  const handleAdminTap = () => {
     setShowPasswordModal(true);
     setPassword("");
     setError("");
   };
 
-  const handlePasswordSubmit = () => {
-    if (password === "rajuraju") {
-      setShowPasswordModal(false);
+const handleAdminClick = async () => {
+  const password = prompt("Enter Admin Password:");
+
+  if (!password) return;
+
+  try {
+    const res = await fetch("http://localhost:5000/api/admin/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password }),
+    });
+
+    if (res.ok) {
       navigate("/admin");
     } else {
-      setError("❌ Incorrect password. Please try again.");
+      alert("❌ Incorrect password!");
     }
-  };
+  } catch (err) {
+    console.error(err);
+    alert("⚠️ Server error, try again.");
+  }
+};
+
 
   const getInitials = () => {
     if (user.displayName) {
@@ -74,7 +115,7 @@ const Home = ({ user }) => {
         {/* Right: Buttons + User Info */}
         <div className="right-section">
           <nav className="nav-links">
-            <button onClick={handleAdminClick} className="nav-btn">
+            <button onClick={handleAdminTap} className="nav-btn">
               Admin
             </button>
             <Link to="/contact" className="nav-btn">
