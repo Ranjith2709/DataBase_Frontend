@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import { auth } from "./firebase";
 import GoogleAuth from "./GoogleAuth";
 import Home from "./Home";
+import AdminPage from "./AdminPage";
+import ContactPage from "./ContactPage";
 
  
 const App = () => {
@@ -21,10 +23,12 @@ const App = () => {
  
   return (
     <Router>
-      <Routes>
-    <Route path="/auth" element={<GoogleAuth />} />
-    <Route path="/" element={user ? <Home user={user} /> : <Navigate to="/auth" />} />
-  </Routes>
+     <Routes>
+  <Route path="/auth" element={<GoogleAuth />} />
+  <Route path="/" element={user ? <Home user={user} /> : <Navigate to="/auth" />} />
+  <Route path="/admin" element={<AdminPage />} />
+  <Route path="/contact" element={<ContactPage />} />
+</Routes>
     </Router>
   );
 };
