@@ -4,12 +4,13 @@
   display: flex;
   flex-direction: column;
 }
+
 .home-header {
   display: flex;
   justify-content: space-between; /* logo left, user right */
   align-items: center;
-  padding: 10px 20px;
-  background-color: #667eea;
+  padding: 5px 20px;
+  background-color: #43b9ec;
   color: white;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   position: relative;
@@ -22,7 +23,7 @@
 }
 
 .logo {
-  height: 50px;   /* adjust based on your logo */
+  height: 40px; /* adjust based on your logo */
   width: auto;
   cursor: pointer;
 }
@@ -32,13 +33,17 @@
   align-items: center;
   gap: 10px;
 }
+
 .user-name {
   font-size: 16px;
   font-weight: 500;
-} /* Generic avatar with initials */
+}
+
+/* Generic avatar with initials */
 .avatar-container {
   position: relative;
 }
+
 .generic-avatar {
   width: 40px;
   height: 40px;
@@ -52,7 +57,9 @@
   font-weight: bold;
   font-size: 14px;
   border: 2px solid white;
-} /* Dropdown menu */
+}
+
+/* Dropdown menu */
 .dropdown-menu {
   position: absolute;
   top: 50px;
@@ -66,29 +73,35 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-} /* Row containing sign out and close button */
+}
+
 .dropdown-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 15px;
 }
+
 .dropdown-item {
   cursor: pointer;
   font-size: 14px;
   color: #333;
 }
+
 .dropdown-item:hover {
   color: #e53e3e;
 }
+
 .close-btn {
   cursor: pointer;
   font-size: 16px;
   color: #666;
 }
+
 .close-btn:hover {
   color: #000;
 }
+
 .home-content {
   flex: 1;
   display: flex;
@@ -100,25 +113,23 @@
 .database-section {
   width: 90%;
   max-width: 1200px;
-  margin: 0 auto 60px; /* ⬅ top = 0, left/right = auto, bottom = 60px */
+  margin: 0 auto 60px;
   padding: 50px 40px;
   background: linear-gradient(135deg, #ffffff, #f8faff);
   border-radius: 20px;
-  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
 }
 
-
-.database-section h2 {
+.main-title {
   font-size: 32px;
   color: #1f2937;
-  margin-bottom: 50px;
   font-weight: 700;
   text-align: center;
-  letter-spacing: 0.5px;
-  position: relative;
+  padding: 20px 20px 20px; /* Add padding to position it below the header */
+  margin: 0 auto; /* Center the title horizontally */
 }
 
-.database-section h2::after {
+.main-title::after {
   content: "";
   display: block;
   width: 80px;
@@ -128,64 +139,65 @@
   border-radius: 2px;
 }
 
-/* Base card styling */
-.database-option {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+/* --- New Grid Layout --- */
+.database-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* two equal columns */
   gap: 40px;
-  margin: 40px 0;
-  padding: 30px;
+}
+
+.database-card {
+  display: flex;
+  flex-direction: column; /* image on top, text below */
+  align-items: center;
   background: #fff;
   border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  padding: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.database-option:hover {
+.database-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
 }
-
-/* Image orientation */
-.database-option.left {
-  flex-direction: row; /* image left */
-}
-
-.database-option.right {
-  flex-direction: row-reverse; /* image right */
-}
-
-/* Image container */
-.option-img {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
+.card-img {
+  width: 100%;        /* take full width of card */
+  max-width: 500px;   /* increased from 250px */
+  height: 300px;      /* increased from 200px */
+  object-fit: cover;  /* keep aspect ratio while filling */
   border-radius: 14px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  margin-bottom: 15px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
 }
 
-.database-option:hover .option-img {
+
+.database-card:hover .card-img {
   transform: scale(1.05);
 }
 
-/* Text content */
-.option-text {
-  flex: 1;
+.card-text {
+  text-align: center;
 }
 
-.option-text p {
-  font-size: 17px;
-  color: #374151;
-  line-height: 1.8;
-  margin: 0;
-}
-
-.option-text strong {
-  display: block;
+.card-text strong {
   font-size: 20px;
   color: #111827;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   font-weight: 600;
+  display: block;
+}
+
+.card-text p {
+  font-size: 16px;
+  color: #374151;
+  line-height: 1.6;
+}
+
+/* Responsive - Stack on small screens */
+@media (max-width: 768px) {
+  .database-grid {
+    grid-template-columns: 1fr;
+  }
 }
