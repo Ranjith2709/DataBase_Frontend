@@ -18,6 +18,7 @@ const Header = ({ user }) => {
   const signOut = async () => {
     try {
       await auth.signOut();
+      navigate("/"); // or navigate("/auth");
     } catch (err) {
       console.error(err);
     }

@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { QRCodeSVG } from "qrcode.react"; // ✅ use named export
+import { QRCodeSVG } from "qrcode.react";
 import "./StorageSlider.css";
 
 const StorageSlider = ({ uid }) => {
   const [value, setValue] = useState(1);
-  const pricePerGB = 1; // ₹30 per GB
-  const gbPerStep = 1; // each step = 3 GB
+  const [upiNumber, setUpiNumber] = useState(""); // ✅ Added useState for upiNumber
+  const [showQRCode, setShowQRCode] = useState(false); // ✅ Added useState for showQRCode
+
+  const pricePerGB = 1;
+  const gbPerStep = 1;
 
   const totalGB = value * gbPerStep;
   const totalPrice = totalGB * pricePerGB;
@@ -16,29 +19,32 @@ const StorageSlider = ({ uid }) => {
     payeeName
   )}&am=${totalPrice}&cu=INR`;
 
+  const isUpiNumberValid = upiNumber.length === 10 && /^\d+$/.test(upiNumber);
+
   const handleChange = (e) => {
     setValue(Number(e.target.value));
   };
 
-  // 🔹 Create payment + open UPI
   const handlePay = async () => {
     try {
       const response = await fetch("http://localhost:5000/api/payments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          userId: uid || "guest", // pass real uid after Google login
+          userId: uid || "guest",
           gb: totalGB,
           totalPrice,
           upiLink: upiUrl,
+          upiNumber,
         }),
       });
 
       const data = await response.json();
       console.log("Payment intent stored:", data);
 
-      // redirect to UPI
-      window.location.href = upiUrl;
+      // For desktop, simply show the QR code.
+      setShowQRCode(true);
+
     } catch (error) {
       console.error("Payment error:", error);
     }
@@ -64,13 +70,26 @@ const StorageSlider = ({ uid }) => {
         Price: <strong>₹{totalPrice}</strong>
       </p>
 
+      {/* Input for UPI number */}
+      <input
+        type="text"
+        placeholder="Enter UPI Number"
+        value={upiNumber}
+        onChange={(e) => setUpiNumber(e.target.value)}
+        className="upi-input"
+      />
+
       {/* Payment button */}
-      <button className="pay-btn" onClick={handlePay}>
+      <button
+        className="pay-btn"
+        onClick={handlePay}
+        disabled={!isUpiNumberValid} // Disable button if UPI number is not valid
+      >
         Pay ₹{totalPrice} via UPI
       </button>
 
       {/* QR Code */}
-      {upiUrl && (
+      {showQRCode && ( // ✅ Conditionally render QR code
         <div style={{ marginTop: "20px" }}>
           <h4>Scan & Pay:</h4>
           <QRCodeSVG value={upiUrl} size={200} />

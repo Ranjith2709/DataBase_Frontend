@@ -8,6 +8,7 @@ import image2 from "./assets/image2.jpg";
 import image3 from "./assets/image3.jpg";
 import image4 from "./assets/image4.jpg";
 
+
 const Home = () => {
   return (
     <div className="home-container">
