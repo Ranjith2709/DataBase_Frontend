@@ -53,15 +53,19 @@ const GoogleAuth = () => {
   };
 
   return (
-    <div
-      className="auth-container"
-      style={{
-        backgroundImage: `url(${bgImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
+<div
+  className="auth-container"
+  style={{
+    backgroundImage: `url(${bgImage})`,
+    backgroundSize: "100% auto",   // width = 100%, height = auto (don’t stretch)
+    backgroundPosition: "left top", // start from left
+    backgroundRepeat: "no-repeat",
+    height: "100vh",
+    width: "100vw"
+  }}
+>
+
+
       <div className="auth-card">
         {user ? (
           <>
@@ -72,8 +76,8 @@ const GoogleAuth = () => {
           </>
         ) : (
           <>
-            <h2 className="auth-title">Welcome Back</h2>
-            <p className="auth-subtitle">Sign in to continue</p>
+            <h2 className="auth-title">Sign in</h2>
+            <p className="auth-subtitle">with your Google Account to continue to Gmail.</p>
             <button className="google-btn" onClick={signInWithGoogle}>
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png"
