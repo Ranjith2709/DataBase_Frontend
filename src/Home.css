@@ -1,105 +1,10 @@
+/* Home.css - Cleaned Version */
 .home-container {
   font-family: Arial, sans-serif;
   height: 100vh;
   display: flex;
   flex-direction: column;
-}
-
-.home-header {
-  display: flex;
-  justify-content: space-between; /* logo left, user right */
-  align-items: center;
-  padding: 5px 20px;
-  background-color: #43b9ec;
-  color: white;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  position: relative;
-}
-
-/* Logo styling */
-.logo-container {
-  display: flex;
-  align-items: center;
-}
-
-.logo {
-  height: 50px; /* adjust based on your logo */
-  width: auto;
-  cursor: pointer;
-}
-
-.user-info {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.user-name {
-  font-size: 16px;
-  font-weight: 500;
-}
-
-/* Generic avatar with initials */
-.avatar-container {
-  position: relative;
-}
-
-.generic-avatar {
-  width: 40px;
-  height: 40px;
-  background-color: #f3f3f3;
-  color: #333;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 14px;
-  border: 2px solid white;
-}
-
-/* Dropdown menu */
-.dropdown-menu {
-  position: absolute;
-  top: 50px;
-  right: 0;
-  background-color: #fff;
-  color: #333;
-  border-radius: 6px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  min-width: 160px;
-  z-index: 100;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.dropdown-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 15px;
-}
-
-.dropdown-item {
-  cursor: pointer;
-  font-size: 14px;
-  color: #333;
-}
-
-.dropdown-item:hover {
-  color: #e53e3e;
-}
-
-.close-btn {
-  cursor: pointer;
-  font-size: 16px;
-  color: #666;
-}
-
-.close-btn:hover {
-  color: #000;
+  padding-top: 80px; /* This is the correct way to add space below the fixed header */
 }
 
 .home-content {
@@ -125,8 +30,8 @@
   color: #1f2937;
   font-weight: 700;
   text-align: center;
-  padding: 20px 20px 20px; /* Add padding to position it below the header */
-  margin: 0 auto; /* Center the title horizontally */
+  padding: 20px 20px 20px;
+  margin: 0 auto;
 }
 
 .main-title::after {
@@ -142,13 +47,13 @@
 /* --- New Grid Layout --- */
 .database-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* two equal columns */
+  grid-template-columns: repeat(2, 1fr);
   gap: 40px;
 }
 
 .database-card {
   display: flex;
-  flex-direction: column; /* image on top, text below */
+  flex-direction: column;
   align-items: center;
   background: #fff;
   border-radius: 16px;
@@ -162,16 +67,15 @@
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
 }
 .card-img {
-  width: 100%;        /* take full width of card */
-  max-width: 500px;   /* increased from 250px */
-  height: 300px;      /* increased from 200px */
-  object-fit: cover;  /* keep aspect ratio while filling */
+  width: 100%;
+  max-width: 500px;
+  height: 300px;
+  object-fit: cover;
   border-radius: 14px;
   margin-bottom: 15px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
 }
-
 
 .database-card:hover .card-img {
   transform: scale(1.05);
@@ -202,26 +106,25 @@
   }
 }
 
-
 .hero-section {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* image left, text right */
-  gap: 40px;                      /* spacing between image and text */
+  justify-content: space-between;
+  gap: 40px;
   margin: 40px 0;
-  padding: 0 40px;                 /* optional side padding */
+  padding: 0 40px;
 }
 
 .hero-image {
-  width: 50%;          /* take half screen for image */
+  width: 50%;
   max-width: 700px;
   height: auto;
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
 .hero-text {
-  width: 45%;          /* rest of space for text */
+  width: 45%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -237,131 +140,4 @@
   font-size: 18px;
   line-height: 1.6;
   color: #374151;
-}
-.right-section {
-  display: flex;
-  align-items: center;
-  gap: 20px; /* space between buttons and user info */
-  margin-left: auto; /* push to the right */
-}
-
-.nav-links {
-  display: flex;
-  gap: 15px;
-}
-
-
-
-
-
-.nav-btn {
-  color: white;
-  font-size: 16px;
-  font-weight: 500;
-  text-decoration: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  background: #43b9ec;
-  transition: background 0.3s ease;
-  border: none;
-  cursor: pointer;
-}
-
-.nav-btn:hover {
-  background: #13aeec;
-}
-
-
-
-
-
-/* Overlay */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-/* Modal Box */
-.modal-box {
-  background: #fff;
-  padding: 30px 40px;
-  border-radius: 12px;
-  max-width: 400px;
-  width: 90%;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  animation: fadeIn 0.3s ease;
-}
-
-/* Title */
-.modal-box h2 {
-  margin-bottom: 10px;
-  color: #1e3a8a;
-}
-
-/* Input */
-.password-input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 12px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-}
-
-/* Error */
-.error-text {
-  color: red;
-  font-size: 14px;
-  margin-top: 8px;
-}
-
-/* Actions */
-.modal-actions {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.modal-btn {
-  flex: 1;
-  padding: 10px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  transition: all 0.3s ease;
-}
-
-.modal-btn.confirm {
-  background: #2563eb;
-  color: #fff;
-}
-
-.modal-btn.confirm:hover {
-  background: #1e40af;
-}
-
-.modal-btn.cancel {
-  background: #e5e7eb;
-  color: #333;
-}
-
-.modal-btn.cancel:hover {
-  background: #d1d5db;
-}
-
-/* Animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
 }
