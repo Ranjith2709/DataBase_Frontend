@@ -1,18 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { auth, googleProvider } from "./firebase";
-import { useNavigate } from "react-router-dom"; // ✅ Add this
+import { useNavigate } from "react-router-dom";
 import "./GoogleAuth.css";
 import bgImage from "./assets/coverl.jpg";
 
 const GoogleAuth = () => {
   const [user, setUser] = useState(null);
-  const navigate = useNavigate(); // ✅ hook for navigation
+  const navigate = useNavigate();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((person) => {
       setUser(person || null);
     });
     return () => unsubscribe();
+  }, []);
+
+  // ✅ Disable scroll ONLY on this page
+  useEffect(() => {
+    document.body.classList.add("no-scroll");
+    return () => {
+      document.body.classList.remove("no-scroll");
+    };
   }, []);
 
   // ✅ Send user data to backend dynamically
@@ -46,26 +54,24 @@ const GoogleAuth = () => {
   const signOut = async () => {
     try {
       await auth.signOut();
-      setUser(null); // Reset user state
+      setUser(null);
     } catch (err) {
       console.error(err);
     }
   };
 
   return (
-<div
-  className="auth-container"
-  style={{
-    backgroundImage: `url(${bgImage})`,
-    backgroundSize: "100% auto",   // width = 100%, height = auto (don’t stretch)
-    backgroundPosition: "left top", // start from left
-    backgroundRepeat: "no-repeat",
-    height: "100vh",
-    width: "100vw"
-  }}
->
-
-
+    <div
+      className="auth-container"
+      style={{
+        backgroundImage: `url(${bgImage})`,
+        backgroundSize: "100% auto",
+        backgroundPosition: "left top",
+        backgroundRepeat: "no-repeat",
+        height: "100vh",
+        width: "100vw"
+      }}
+    >
       <div className="auth-card">
         {user ? (
           <>
