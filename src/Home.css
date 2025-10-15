@@ -157,3 +157,90 @@ body {
   line-height: 1.6;
   color: #374151;
 }
+
+/* Services Section */
+.services-section {
+  width: 90%;
+  max-width: 1200px;
+  margin: 60px auto;
+  text-align: center;
+}
+
+.services-section h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #1f2937;
+  font-weight: 700;
+}
+
+/* Grid for services */
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* default single column on mobile */
+  gap: 30px;
+}
+
+/* First image full-width */
+.service-card.full-width {
+  grid-column: 1 / -1; /* span full width */
+}
+
+.service-card img {
+  width: 100%;
+  height: 250px; /* decrease height */
+  border-radius: 12px;
+  object-fit: cover;
+  margin-bottom: 15px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.service-card img:hover {
+  transform: scale(1.03);
+}
+
+.service-text {
+  text-align: center;
+}
+
+.service-text strong {
+  display: block;
+  font-size: 20px;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.service-text p {
+  font-size: 16px;
+  color: #374151;
+  line-height: 1.5;
+}
+
+/* Half-width images side by side on desktop */
+@media (min-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr; /* first image still full width */
+  }
+
+  /* Second and third images side by side */
+  .services-grid > .half-width:nth-child(2),
+  .services-grid > .half-width:nth-child(3) {
+    grid-column: span 1;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr; /* fallback */
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* default for mobile */
+    gap: 30px;
+  }
+
+  .services-grid .half-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+}

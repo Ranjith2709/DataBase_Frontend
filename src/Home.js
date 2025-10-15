@@ -82,6 +82,42 @@ const Home = () => {
           </div>
         </section>
 
+<section className="services-section">
+  <h2>OUR SERVICES</h2>
+
+  <div className="services-grid">
+    {/* Full-width horizontal image */}
+    <div className="service-card full-width">
+      <img src={image1} alt="Service 1" />
+      <div className="service-text">
+        <strong>Service One</strong>
+        <p>Description for Service One. Highlight the features and benefits.</p>
+      </div>
+    </div>
+
+    {/* Two half-width images side by side */}
+    <div className="half-row">
+      <div className="service-card half-width">
+        <img src={image2} alt="Service 2" />
+        <div className="service-text">
+          <strong>Service Two</strong>
+          <p>Description for Service Two. Brief but informative.</p>
+        </div>
+      </div>
+
+      <div className="service-card half-width">
+        <img src={image3} alt="Service 3" />
+        <div className="service-text">
+          <strong>Service Three</strong>
+          <p>Description for Service Three. Brief but informative.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
         <section>
           <h2>Storage Selection</h2>
           <StorageSlider />
