@@ -7,7 +7,8 @@ import image2 from "./assets/image2.jpg";
 import image3 from "./assets/image3.jpg";
 import image4 from "./assets/image4.jpg";
 
-const Home = () => {
+const Home = ({ user }) => {
+  // ✅ Accept user as a prop
   // Create a ref for the StorageSlider section
   const storageRef = useRef(null);
 
@@ -52,7 +53,9 @@ const Home = () => {
               <img src={image2} alt="Database Service 2" className="card-img" />
               <div className="card-text">
                 <strong>Data Store</strong>
-                <p>Reliable, and quick access to data for modern applications.</p>
+                <p>
+                  Reliable, and quick access to data for modern applications.
+                </p>
               </div>
             </div>
             <div className="database-card">
@@ -81,13 +84,19 @@ const Home = () => {
               <img src={image1} alt="Service 1" />
               <div className="service-text">
                 <strong>Service One</strong>
-                <p>Description for Service One. Highlight the features and benefits.</p>
+                <p>
+                  Description for Service One. Highlight the features and
+                  benefits.
+                </p>
               </div>
             </div>
 
             {/* Two half-width images side by side */}
             <div className="half-row">
-              <div className="service-card half-width" onClick={scrollToStorage}>
+              <div
+                className="service-card half-width"
+                onClick={scrollToStorage}
+              >
                 <img src={image2} alt="Service 2" />
                 <div className="service-text">
                   <strong>Service Two</strong>
@@ -95,7 +104,10 @@ const Home = () => {
                 </div>
               </div>
 
-              <div className="service-card half-width" onClick={scrollToStorage}>
+              <div
+                className="service-card half-width"
+                onClick={scrollToStorage}
+              >
                 <img src={image3} alt="Service 3" />
                 <div className="service-text">
                   <strong>Service Three</strong>
@@ -109,7 +121,8 @@ const Home = () => {
         {/* Storage Selection Section */}
         <section ref={storageRef}>
           <h2>Storage Selection</h2>
-          <StorageSlider />
+          {/* ✅ Pass user as prop */}
+          <StorageSlider uid={user.uid} user={user} />
         </section>
       </main>
     </div>

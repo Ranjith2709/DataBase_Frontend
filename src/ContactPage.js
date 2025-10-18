@@ -52,7 +52,8 @@ const ContactPage = () => {
 
         <h2>Availability</h2>
         <p>
-          We’re available 24/7 serving customers <strong>internationally</strong>.
+          We’re available 24/7 serving customers{" "}
+          <strong>internationally</strong>.
         </p>
       </div>
 

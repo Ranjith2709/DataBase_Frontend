@@ -1,7 +1,6 @@
-// firebase.js
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
- 
+
 if (!firebase.apps.length) {
   firebase.initializeApp({
     apiKey: "AIzaSyDFbBIiMz5SSypj7INdU6aGpZUWa9PoZbA",
@@ -13,6 +12,6 @@ if (!firebase.apps.length) {
     measurementId: "G-YEWKBCJYWV",
   });
 }
- 
+
 export const auth = firebase.auth();
 export const googleProvider = new firebase.auth.GoogleAuthProvider();

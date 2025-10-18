@@ -1,12 +1,16 @@
-// App.js
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { auth } from "./firebase";
 import GoogleAuth from "./GoogleAuth";
 import Home from "./Home";
 import AdminPage from "./AdminPage";
 import ContactPage from "./ContactPage";
-import Header from "./Header"; // 🆕 Import the new Header component
+import Header from "./Header";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -20,15 +24,22 @@ const App = () => {
     return () => unsubscribe();
   }, []);
 
-  if (loading) return <p style={{ textAlign: "center", marginTop: "50px" }}>Loading...</p>;
+  if (loading)
+    return <p style={{ textAlign: "center", marginTop: "50px" }}>Loading...</p>;
 
   return (
     <Router>
-      {user && <Header user={user} />} {/* 🆕 Conditionally render the Header */}
+      {user && <Header user={user} />}
       <Routes>
         <Route path="/auth" element={<GoogleAuth />} />
-        <Route path="/" element={user ? <Home user={user} /> : <Navigate to="/auth" />} />
-        <Route path="/admin" element={user ? <AdminPage user={user} /> : <Navigate to="/auth" />} />
+        <Route
+          path="/"
+          element={user ? <Home user={user} /> : <Navigate to="/auth" />}
+        />
+        <Route
+          path="/admin"
+          element={user ? <AdminPage user={user} /> : <Navigate to="/auth" />}
+        />
         <Route path="/contact" element={<ContactPage />} />
       </Routes>
     </Router>

@@ -15,7 +15,6 @@ const GoogleAuth = () => {
     return () => unsubscribe();
   }, []);
 
-  // ✅ Disable scroll ONLY on this page
   useEffect(() => {
     document.body.classList.add("no-scroll");
     return () => {
@@ -23,7 +22,6 @@ const GoogleAuth = () => {
     };
   }, []);
 
-  // ✅ Send user data to backend dynamically
   useEffect(() => {
     if (user) {
       fetch("http://localhost:5000/api/users", {
@@ -32,12 +30,12 @@ const GoogleAuth = () => {
         body: JSON.stringify({
           uid: user.uid,
           name: user.displayName,
-          email: user.email
-        })
+          email: user.email,
+        }),
       })
-        .then(res => res.json())
-        .then(data => console.log("User saved in DB:", data))
-        .catch(err => console.error(err));
+        .then((res) => res.json())
+        .then((data) => console.log("User saved in DB:", data))
+        .catch((err) => console.error(err));
     }
   }, [user]);
 
@@ -45,7 +43,7 @@ const GoogleAuth = () => {
     try {
       googleProvider.setCustomParameters({ prompt: "select_account" });
       await auth.signInWithPopup(googleProvider);
-      navigate("/"); // ✅ Navigate to home only after login
+      navigate("/"); // Navigate to home only after login
     } catch (err) {
       console.error(err);
     }
@@ -69,21 +67,27 @@ const GoogleAuth = () => {
         backgroundPosition: "left top",
         backgroundRepeat: "no-repeat",
         height: "100vh",
-        width: "100vw"
+        width: "100vw",
       }}
     >
       <div className="auth-card">
         {user ? (
           <>
-            <div className="auth-avatar">{user.displayName?.slice(0, 2).toUpperCase()}</div>
+            <div className="auth-avatar">
+              {user.displayName?.slice(0, 2).toUpperCase()}
+            </div>
             <h2 className="auth-title">Welcome, {user.displayName}</h2>
             <p className="auth-subtitle">{user.email}</p>
-            <button className="sign-out-btn" onClick={signOut}>Sign out</button>
+            <button className="sign-out-btn" onClick={signOut}>
+              Sign out
+            </button>
           </>
         ) : (
           <>
             <h2 className="auth-title">Sign in</h2>
-            <p className="auth-subtitle">with your Google Account to continue to Gmail.</p>
+            <p className="auth-subtitle">
+              with your Google Account to continue to Gmail.
+            </p>
             <button className="google-btn" onClick={signInWithGoogle}>
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png"

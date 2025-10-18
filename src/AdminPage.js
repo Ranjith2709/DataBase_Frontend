@@ -24,7 +24,9 @@ const AdminPage = () => {
   }, []);
 
   if (loading)
-    return <p style={{ textAlign: "center", marginTop: "50px" }}>Loading users...</p>;
+    return (
+      <p style={{ textAlign: "center", marginTop: "50px" }}>Loading users...</p>
+    );
 
   return (
     <div className="admin-container">
@@ -62,10 +64,7 @@ const AdminPage = () => {
 
       {/* Back button at the bottom */}
       <div className="back-btn-container">
-        <button
-          onClick={() => navigate("/")}
-          className="back-btn"
-        >
+        <button onClick={() => navigate("/")} className="back-btn">
           ← Back to Home
         </button>
       </div>

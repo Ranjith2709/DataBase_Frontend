@@ -1,7 +1,5 @@
-/* ContactPage.css - Responsive Version */
-
 .contact-container {
-  padding: 60px 20px; /* horizontal padding for small screens */
+  padding: 60px 20px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f8f9fa;
   min-height: 100vh;
@@ -58,8 +56,6 @@
 .contact-card .address {
   margin-bottom: 15px;
 }
-
-/* WhatsApp alignment fix */
 .whatsapp {
   display: flex;
   align-items: center;
@@ -83,7 +79,6 @@
   text-decoration: underline;
 }
 
-/* Back button styling */
 .back-btn-container {
   display: flex;
   justify-content: center;
@@ -104,8 +99,6 @@
 .back-btn:hover {
   background-color: #2ca9d7;
 }
-
-/* 🌟 Responsive adjustments */
 @media screen and (max-width: 1200px) {
   .contact-header h1 {
     font-size: 2.2rem;

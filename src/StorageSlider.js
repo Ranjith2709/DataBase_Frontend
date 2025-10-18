@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { QRCodeSVG } from "qrcode.react";
 import "./StorageSlider.css";
 
-const StorageSlider = ({ uid }) => {
+const StorageSlider = ({ uid, user }) => {
   const [value, setValue] = useState(1);
   const [upiNumber, setUpiNumber] = useState("");
   const [showQRCode, setShowQRCode] = useState(false);
@@ -27,23 +27,19 @@ const StorageSlider = ({ uid }) => {
   };
 
   const handlePay = async () => {
+    if (!user) return alert("Login required!");
+
     try {
       const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-      // For mobile or tablet users, redirect to UPI app instead of showing QR
-      if (isMobile) {
-        window.location.href = upiUrl;
-      } else {
-        // Show QR code for desktop/laptop users
-        setShowQRCode(true);
-      }
-
-      // Send payment intent to backend
+      // 1️⃣ Call backend to save payment
       const response = await fetch("http://localhost:5000/api/payments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          userId: uid || "guest",
+          userId: user.uid,
+          name: user.displayName,
+          email: user.email,
           gb: totalGB,
           totalPrice,
           upiLink: upiUrl,
@@ -53,10 +49,16 @@ const StorageSlider = ({ uid }) => {
       });
 
       const data = await response.json();
-      console.log("Payment intent stored:", data);
-    } catch (error) {
-      console.error("Payment error:", error);
-      alert("Something went wrong while generating payment. Please try again.");
+      console.log("Payment processed:", data);
+
+      if (isMobile) {
+        window.location.href = upiUrl;
+      } else {
+        setShowQRCode(true); // show QR code for desktop
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Payment failed. Try again.");
     }
   };
 
@@ -116,9 +118,9 @@ const StorageSlider = ({ uid }) => {
           ) : (
             <div className="pay-button-container">
               <p>
-                { /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+                {/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
                   ? "Tap below to open your UPI app"
-                  : "Generate QR code to pay with your UPI app" }
+                  : "Generate QR code to pay with your UPI app"}
               </p>
               <button
                 className="pay-btn"

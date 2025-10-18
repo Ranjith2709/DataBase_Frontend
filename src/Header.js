@@ -76,48 +76,47 @@ const Header = ({ user }) => {
           </Link>
         </div>
 
-     {/* Right: Buttons + User Info */}
-<div className="right-section">
-  <nav className="nav-links">
-    {/* Home button */}
-    <Link to="/" className="nav-btn">
-      Home
-    </Link>
+        {/* Right: Buttons + User Info */}
+        <div className="right-section">
+          <nav className="nav-links">
+            {/* Home button */}
+            <Link to="/" className="nav-btn">
+              Home
+            </Link>
 
-    {/* Admin button */}
-    <button onClick={handleAdminTap} className="nav-btn">
-      Admin
-    </button>
+            {/* Admin button */}
+            <button onClick={handleAdminTap} className="nav-btn">
+              Admin
+            </button>
 
-    {/* Contact Us button */}
-    <Link to="/contact" className="nav-btn">
-      Contact Us
-    </Link>
-  </nav>
+            {/* Contact Us button */}
+            <Link to="/contact" className="nav-btn">
+              Contact Us
+            </Link>
+          </nav>
 
-  <div className="user-info">
-    <span className="user-name">{user.displayName || user.email}</span>
-    <div className="avatar-container">
-      <div className="generic-avatar" onClick={toggleDropdown}>
-        {getInitials()}
-      </div>
+          <div className="user-info">
+            <span className="user-name">{user.displayName || user.email}</span>
+            <div className="avatar-container">
+              <div className="generic-avatar" onClick={toggleDropdown}>
+                {getInitials()}
+              </div>
 
-      {dropdownOpen && (
-        <div className="dropdown-menu">
-          <div className="dropdown-row">
-            <span className="dropdown-item" onClick={signOut}>
-              Sign out
-            </span>
-            <span className="close-btn" onClick={closeDropdown}>
-              ×
-            </span>
+              {dropdownOpen && (
+                <div className="dropdown-menu">
+                  <div className="dropdown-row">
+                    <span className="dropdown-item" onClick={signOut}>
+                      Sign out
+                    </span>
+                    <span className="close-btn" onClick={closeDropdown}>
+                      ×
+                    </span>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      )}
-    </div>
-  </div>
-</div>
-
       </header>
 
       {/* Password Modal */}
