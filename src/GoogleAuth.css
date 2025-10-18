@@ -1,32 +1,28 @@
-
-
-/* Container for auth page */
-/* Container for auth page */
+/* 🌈 Container for auth page */
 .auth-container {
   height: 100vh;
   display: flex;
-  justify-content: center;     /* center horizontally */
-  align-items: flex-end;       /* push content down */
-  padding-bottom: 50px;        /* distance from bottom */
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 50px;
   background: linear-gradient(135deg, #667eea, #764ba2);
   font-family: Arial, sans-serif;
-  overflow: hidden;            /* disable scroll only here */
+  overflow: hidden;
 }
 
-
-/* Auth card styling */
+/* 💳 Auth card styling */
 .auth-card {
   background: #fff;
   padding: 20px;
-   margin-top: auto;       /* pushes it down */
-  margin-bottom: 50px;  
+  margin-bottom: 50px;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   text-align: center;
   width: 350px;
+  max-width: 90%; /* ✅ responsive width */
 }
 
-/* Title and subtitle */
+/* 🏷️ Title and subtitle */
 .auth-title {
   margin: 10px 0;
   font-size: 24px;
@@ -39,7 +35,7 @@
   font-size: 14px;
 }
 
-/* Google button */
+/* 🔘 Google button */
 .google-btn {
   display: flex;
   align-items: center;
@@ -54,16 +50,16 @@
   font-weight: 500;
   color: #444;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  gap: 12px; /* space between icon and text */
+  gap: 12px;
 }
 
-/* Google icon */
+/* 🖼️ Google icon */
 .google-icon {
   width: 50px;
   height: 24px;
 }
 
-/* Sign-out button */
+/* 🚪 Sign-out button */
 .sign-out-btn {
   margin-top: 20px;
   padding: 10px 20px;
@@ -75,7 +71,7 @@
   font-size: 16px;
 }
 
-/* Avatar for logged-in user */
+/* 👤 Avatar */
 .auth-avatar {
   width: 60px;
   height: 60px;
@@ -88,4 +84,65 @@
   font-weight: bold;
   font-size: 24px;
   margin: 0 auto 15px;
+}
+
+/* 📱 Responsive styles */
+
+/* For small phones */
+@media (max-width: 480px) {
+  .auth-container {
+    align-items: center;
+    padding-bottom: 20px;
+  }
+
+  .auth-card {
+    width: 90%;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+
+  .auth-title {
+    font-size: 20px;
+  }
+
+  .auth-subtitle {
+    font-size: 13px;
+  }
+
+  .google-btn {
+    font-size: 14px;
+    padding: 10px 0;
+  }
+
+  .sign-out-btn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
+/* For tablets (portrait) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .auth-card {
+    width: 70%;
+    padding: 25px;
+  }
+
+  .auth-title {
+    font-size: 22px;
+  }
+
+  .auth-subtitle {
+    font-size: 14px;
+  }
+
+  .google-btn {
+    font-size: 15px;
+  }
+}
+
+/* For large tablets / small laptops */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .auth-card {
+    width: 50%;
+  }
 }

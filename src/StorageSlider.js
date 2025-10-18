@@ -28,9 +28,17 @@ const StorageSlider = ({ uid }) => {
 
   const handlePay = async () => {
     try {
-      // Show the QR code immediately for a better user experience
-      setShowQRCode(true);
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
+      // For mobile or tablet users, redirect to UPI app instead of showing QR
+      if (isMobile) {
+        window.location.href = upiUrl;
+      } else {
+        // Show QR code for desktop/laptop users
+        setShowQRCode(true);
+      }
+
+      // Send payment intent to backend
       const response = await fetch("http://localhost:5000/api/payments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -40,6 +48,7 @@ const StorageSlider = ({ uid }) => {
           totalPrice,
           upiLink: upiUrl,
           upiNumber,
+          deviceType: isMobile ? "mobile" : "desktop",
         }),
       });
 
@@ -47,7 +56,7 @@ const StorageSlider = ({ uid }) => {
       console.log("Payment intent stored:", data);
     } catch (error) {
       console.error("Payment error:", error);
-      // Handle error case, e.g., show an error message
+      alert("Something went wrong while generating payment. Please try again.");
     }
   };
 
@@ -76,7 +85,7 @@ const StorageSlider = ({ uid }) => {
         <div className="upi-input-container">
           <p className="label">Your UPI Mobile Number</p>
           <input
-            type="tel" // Use type="tel" for better mobile keyboard
+            type="tel"
             placeholder="e.g., 9876543210"
             value={upiNumber}
             onChange={(e) => setUpiNumber(e.target.value)}
@@ -85,12 +94,13 @@ const StorageSlider = ({ uid }) => {
           />
         </div>
       </div>
+
       <div className="payment-section">
         <h2 className="section-title">Complete Payment</h2>
         <div className="qr-code-container">
           {showQRCode ? (
             <>
-              <p>Scan with any UPI app</p>
+              <p>Scan with any UPI app (for Desktop/Laptop)</p>
               <div className="qr-code-box">
                 <QRCodeSVG value={upiUrl} size={150} />
               </div>
@@ -105,7 +115,11 @@ const StorageSlider = ({ uid }) => {
             </>
           ) : (
             <div className="pay-button-container">
-              <p>Generate QR code to pay with your UPI app</p>
+              <p>
+                { /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+                  ? "Tap below to open your UPI app"
+                  : "Generate QR code to pay with your UPI app" }
+              </p>
               <button
                 className="pay-btn"
                 onClick={handlePay}

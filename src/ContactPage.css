@@ -1,9 +1,12 @@
+/* ContactPage.css - Responsive Version */
+
 .contact-container {
-  padding: 60px 20px;
+  padding: 60px 20px; /* horizontal padding for small screens */
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f8f9fa;
   min-height: 100vh;
   color: #343a40;
+  box-sizing: border-box;
 }
 
 .contact-header {
@@ -22,6 +25,7 @@
   color: #6c757d;
 }
 
+/* Contact card styling */
 .contact-card {
   max-width: 700px;
   margin: 0 auto;
@@ -29,6 +33,7 @@
   border-radius: 12px;
   padding: 30px 40px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 .contact-card h2 {
@@ -54,7 +59,7 @@
   margin-bottom: 15px;
 }
 
-/* ✅ WhatsApp alignment fix */
+/* WhatsApp alignment fix */
 .whatsapp {
   display: flex;
   align-items: center;
@@ -78,12 +83,6 @@
   text-decoration: underline;
 }
 
-@media (max-width: 768px) {
-  .contact-card {
-    padding: 20px;
-  }
-}
-
 /* Back button styling */
 .back-btn-container {
   display: flex;
@@ -104,4 +103,85 @@
 
 .back-btn:hover {
   background-color: #2ca9d7;
+}
+
+/* 🌟 Responsive adjustments */
+@media screen and (max-width: 1200px) {
+  .contact-header h1 {
+    font-size: 2.2rem;
+  }
+  .contact-header p {
+    font-size: 1.1rem;
+  }
+  .contact-card h2 {
+    font-size: 1.6rem;
+  }
+  .contact-card p,
+  .contact-card span {
+    font-size: 0.95rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .contact-container {
+    padding: 40px 15px;
+  }
+  .contact-header h1 {
+    font-size: 1.8rem;
+  }
+  .contact-header p {
+    font-size: 1rem;
+  }
+  .contact-card {
+    padding: 20px;
+  }
+  .contact-card h2 {
+    font-size: 1.4rem;
+  }
+  .contact-card p,
+  .contact-card span {
+    font-size: 0.9rem;
+  }
+  .whatsapp-icon {
+    font-size: 1.5rem;
+  }
+  .whatsapp a {
+    font-size: 0.95rem;
+  }
+  .back-btn {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .contact-container {
+    padding: 30px 10px;
+  }
+  .contact-header h1 {
+    font-size: 1.5rem;
+  }
+  .contact-header p {
+    font-size: 0.9rem;
+  }
+  .contact-card {
+    padding: 15px 20px;
+  }
+  .contact-card h2 {
+    font-size: 1.2rem;
+  }
+  .contact-card p,
+  .contact-card span {
+    font-size: 0.85rem;
+  }
+  .whatsapp-icon {
+    font-size: 1.3rem;
+  }
+  .whatsapp a {
+    font-size: 0.9rem;
+  }
+  .back-btn {
+    padding: 8px 15px;
+    font-size: 0.85rem;
+  }
 }

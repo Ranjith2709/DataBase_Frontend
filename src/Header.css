@@ -1,4 +1,4 @@
-/* Header.css - Cleaned Version */
+/* 🌟 Header Base Styling */
 .home-header {
   display: flex;
   justify-content: space-between;
@@ -11,8 +11,10 @@
   width: 98%;
   top: 0;
   z-index: 1000;
+  flex-wrap: wrap;
 }
 
+/* 🏷️ Logo */
 .logo-container {
   display: flex;
   align-items: center;
@@ -24,6 +26,7 @@
   cursor: pointer;
 }
 
+/* 🔗 Right Section (Nav + User Info) */
 .right-section {
   display: flex;
   align-items: center;
@@ -53,6 +56,7 @@
   background: #13aeec;
 }
 
+/* 👤 User Info */
 .user-info {
   display: flex;
   align-items: center;
@@ -83,6 +87,7 @@
   border: 2px solid white;
 }
 
+/* 📂 Dropdown Menu */
 .dropdown-menu {
   position: absolute;
   top: 50px;
@@ -125,7 +130,7 @@
   color: #000;
 }
 
-/* Modal styles */
+/* 🧩 Modal Styles */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -205,6 +210,7 @@
   background: #d1d5db;
 }
 
+/* ✨ Fade Animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -213,5 +219,85 @@
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+/* 📱 Responsive Styles */
+
+/* Small phones */
+@media (max-width: 480px) {
+  .home-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .logo {
+    height: 40px;
+  }
+
+  .right-section {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 10px;
+    margin-top: 5px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .nav-btn {
+    width: 100%;
+    text-align: left;
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .user-info {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .user-name {
+    font-size: 14px;
+  }
+}
+
+/* Tablets (portrait and landscape) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .home-header {
+    padding: 10px 15px;
+  }
+
+  .logo {
+    height: 45px;
+  }
+
+  .nav-btn {
+    font-size: 15px;
+    padding: 6px 10px;
+  }
+
+  .user-name {
+    font-size: 15px;
+  }
+}
+
+/* Large tablets and small laptops */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .home-header {
+    padding: 8px 20px;
+  }
+
+  .nav-btn {
+    font-size: 15px;
+  }
+
+  .user-name {
+    font-size: 15px;
   }
 }
