@@ -4,11 +4,26 @@
   justify-content: center;
   align-items: flex-end;
   padding-bottom: 50px;
-  background: linear-gradient(135deg, #667eea, #764ba2);
   font-family: Arial, sans-serif;
   overflow: hidden;
+  
+  /* Default background for desktop/laptop */
+  background-image: url('./assets/mainpic.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
+/* Mobile / tablet background */
+@media (max-width: 1024px) {
+  .auth-container {
+    background-image: url('./assets/mainpic.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+/* Keep your existing card styling */
 .auth-card {
   background: #fff;
   padding: 20px;
@@ -19,6 +34,9 @@
   width: 350px;
   max-width: 90%;
 }
+
+/* ... rest of your CSS ... */
+
 
 .auth-title {
   margin: 10px 0;

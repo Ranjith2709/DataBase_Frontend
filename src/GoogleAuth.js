@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./GoogleAuth.css";
 import bgImage from "./assets/coverl.jpg";
 
+
 const GoogleAuth = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
@@ -59,47 +60,38 @@ const GoogleAuth = () => {
   };
 
   return (
-    <div
-      className="auth-container"
-      style={{
-        backgroundImage: `url(${bgImage})`,
-        backgroundSize: "100% auto",
-        backgroundPosition: "left top",
-        backgroundRepeat: "no-repeat",
-        height: "100vh",
-        width: "100vw",
-      }}
-    >
-      <div className="auth-card">
-        {user ? (
-          <>
-            <div className="auth-avatar">
-              {user.displayName?.slice(0, 2).toUpperCase()}
-            </div>
-            <h2 className="auth-title">Welcome, {user.displayName}</h2>
-            <p className="auth-subtitle">{user.email}</p>
-            <button className="sign-out-btn" onClick={signOut}>
-              Sign out
-            </button>
-          </>
-        ) : (
-          <>
-            <h2 className="auth-title">Sign in</h2>
-            <p className="auth-subtitle">
-              with your Google Account to continue to Gmail.
-            </p>
-            <button className="google-btn" onClick={signInWithGoogle}>
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png"
-                alt="Google"
-                className="google-icon"
-              />
-              Sign in with Google
-            </button>
-          </>
-        )}
-      </div>
-    </div>
+   <div className="auth-container">
+  <div className="auth-card">
+    {user ? (
+      <>
+        <div className="auth-avatar">
+          {user.displayName?.slice(0, 2).toUpperCase()}
+        </div>
+        <h2 className="auth-title">Welcome, {user.displayName}</h2>
+        <p className="auth-subtitle">{user.email}</p>
+        <button className="sign-out-btn" onClick={signOut}>
+          Sign out
+        </button>
+      </>
+    ) : (
+      <>
+        <h2 className="auth-title">Sign in</h2>
+        <p className="auth-subtitle">
+          with your Google Account to continue.
+        </p>
+        <button className="google-btn" onClick={signInWithGoogle}>
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png"
+            alt="Google"
+            className="google-icon"
+          />
+          Sign in with Google
+        </button>
+      </>
+    )}
+  </div>
+</div>
+
   );
 };
 
