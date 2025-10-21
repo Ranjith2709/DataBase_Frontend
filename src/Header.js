@@ -1,19 +1,31 @@
-// Header.js 🆕
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { auth } from "./firebase";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "./assets/fnlogo.jpg";
-import "./Header.css"; // 🆕 Create this CSS file for styling
+import "./Header.css";
 
 const Header = ({ user }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false); // State for mobile navigation
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  // Close nav menu if window is resized above mobile breakpoint (768px)
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768 && isNavOpen) {
+        setIsNavOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isNavOpen]);
+
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
   const closeDropdown = () => setDropdownOpen(false);
+  const toggleNav = () => setIsNavOpen(!isNavOpen); // Toggle function for hamburger menu
 
   const signOut = async () => {
     try {
@@ -28,6 +40,7 @@ const Header = ({ user }) => {
     setShowPasswordModal(true);
     setPassword("");
     setError("");
+    setIsNavOpen(false); // Close mobile nav when opening modal
   };
 
   const handlePasswordSubmit = async () => {
@@ -37,6 +50,7 @@ const Header = ({ user }) => {
     }
 
     try {
+      // NOTE: Using the user's provided local fetch endpoint
       const res = await fetch("http://localhost:5000/api/admin/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -56,14 +70,16 @@ const Header = ({ user }) => {
   };
 
   const getInitials = () => {
-    if (user.displayName) {
-      const names = user.displayName.split(" ");
-      return (
-        (names[0]?.[0] || "").toUpperCase() +
-        (names[1]?.[0] || "").toUpperCase()
-      );
+    const name = user.displayName || user.email;
+    if (!name) return "?";
+    
+    const names = name.split(" ");
+    if (names.length > 1) {
+      // Get first letter of first name and last name
+      return (names[0]?.[0] || "").toUpperCase() + (names[names.length - 1]?.[0] || "").toUpperCase();
     }
-    return (user.email?.[0] || "").toUpperCase(); // Just get the first initial for email
+    // Just get the first initial for single name or email
+    return (name[0] || "").toUpperCase();
   };
 
   return (
@@ -76,11 +92,12 @@ const Header = ({ user }) => {
           </Link>
         </div>
 
-        {/* Right: Buttons + User Info */}
+        {/* Right Section: Navigation Links + Menu Icon + User Info */}
         <div className="right-section">
-          <nav className="nav-links">
+          {/* Nav Links - Conditional class for mobile menu (Desktop is hidden, Mobile opens as dropdown) */}
+          <nav className={`nav-links ${isNavOpen ? 'open' : ''}`}>
             {/* Home button */}
-            <Link to="/" className="nav-btn">
+            <Link to="/" className="nav-btn" onClick={() => setIsNavOpen(false)}>
               Home
             </Link>
 
@@ -90,11 +107,21 @@ const Header = ({ user }) => {
             </button>
 
             {/* Contact Us button */}
-            <Link to="/contact" className="nav-btn">
+            <Link to="/contact" className="nav-btn" onClick={() => setIsNavOpen(false)}>
               Contact Us
             </Link>
           </nav>
 
+          {/* NEW POSITION: Hamburger (Mobile) is now on the right, inside right-section, before the user-info */}
+          <button className="menu-icon" onClick={toggleNav} aria-label="Toggle navigation menu">
+            {/* Hamburger Icon (SVG) */}
+            <svg className="hamburger-svg" viewBox="0 0 100 80" width="40" height="40" fill="currentColor">
+              <rect width="100" height="15" rx="8"></rect>
+              <rect y="30" width="100" height="15" rx="8"></rect>
+              <rect y="60" width="100" height="15" rx="8"></rect>
+            </svg>
+          </button>
+          
           <div className="user-info">
             <span className="user-name">{user.displayName || user.email}</span>
             <div className="avatar-container">
@@ -109,7 +136,7 @@ const Header = ({ user }) => {
                       Sign out
                     </span>
                     <span className="close-btn" onClick={closeDropdown}>
-                      ×
+                      &times;
                     </span>
                   </div>
                 </div>

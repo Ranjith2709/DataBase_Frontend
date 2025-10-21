@@ -1,13 +1,4 @@
-/* Home.css - Cleaned Version */
-.home-container {
-  font-family: Arial, sans-serif;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  padding-top: 80px; /* This is the correct way to add space below the fixed header */
-}
-
-
+/* ---------------------- General Styles ---------------------- */
 body {
   margin: 0;
   padding: 0;
@@ -16,12 +7,12 @@ body {
   color: #333;
 }
 
-/* Disable scrolling when applied */
-.no-scroll {
-  overflow: hidden;
-  height: 100vh;
+.home-container {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  padding-top: 80px; /* space for fixed header */
 }
-
 
 .home-content {
   flex: 1;
@@ -31,97 +22,7 @@ body {
   justify-content: center;
 }
 
-.database-section {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto 60px;
-  padding: 50px 40px;
-  background: linear-gradient(135deg, #ffffff, #f8faff);
-  border-radius: 20px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-}
-
-.main-title {
-  font-size: 32px;
-  color: #1f2937;
-  font-weight: 700;
-  text-align: center;
-  padding: 20px 20px 20px;
-  margin: 0 auto;
-}
-
-.main-title::after {
-  content: "";
-  display: block;
-  width: 80px;
-  height: 4px;
-  background: #667eea;
-  margin: 12px auto 0;
-  border-radius: 2px;
-}
-
-/* --- New Grid Layout --- */
-.database-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
-}
-
-.database-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-  padding: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.database-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
-}
-.card-img {
-  width: 100%;
-  max-width: 500px;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 14px;
-  margin-bottom: 15px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.database-card:hover .card-img {
-  transform: scale(1.05);
-}
-
-.card-text {
-  text-align: center;
-}
-
-.card-text strong {
-  font-size: 20px;
-  color: #111827;
-  margin-bottom: 8px;
-  font-weight: 600;
-  display: block;
-}
-
-.card-text p {
-  font-size: 16px;
-  color: #374151;
-  line-height: 1.6;
-}
-
-/* Responsive - Stack on small screens */
-@media (max-width: 768px) {
-  .database-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
+/* ---------------------- Hero Section ---------------------- */
 .hero-section {
   display: flex;
   align-items: center;
@@ -158,7 +59,73 @@ body {
   color: #374151;
 }
 
-/* Services Section */
+/* ---------------------- Tales of Data / Database Section ---------------------- */
+.database-section {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto 60px;
+  padding: 50px 40px;
+  background: linear-gradient(135deg, #ffffff, #f8faff);
+  border-radius: 20px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+}
+
+.database-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+
+.database-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.database-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.card-img {
+  width: 100%;
+  max-width: 500px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 15px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.database-card:hover .card-img {
+  transform: scale(1.05);
+}
+
+.card-text {
+  text-align: center;
+}
+
+.card-text strong {
+  font-size: 20px;
+  color: #111827;
+  margin-bottom: 8px;
+  font-weight: 600;
+  display: block;
+}
+
+.card-text p {
+  font-size: 16px;
+  color: #374151;
+  line-height: 1.6;
+}
+
+/* ---------------------- Services Section ---------------------- */
 .services-section {
   width: 90%;
   max-width: 1200px;
@@ -173,7 +140,6 @@ body {
   font-weight: 700;
 }
 
-/* Grid for services */
 .services-grid {
   display: grid;
   grid-template-columns: 1fr; /* default single column on mobile */
@@ -182,16 +148,16 @@ body {
 
 /* First image full-width */
 .service-card.full-width {
-  grid-column: 1 / -1; /* span full width */
+  grid-column: 1 / -1;
 }
 
 .service-card img {
   width: 100%;
-  height: 250px; /* decrease height */
+  height: 250px; /* desktop height */
   border-radius: 12px;
   object-fit: cover;
   margin-bottom: 15px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
 }
 
@@ -216,31 +182,116 @@ body {
   line-height: 1.5;
 }
 
-/* Half-width images side by side on desktop */
-@media (min-width: 768px) {
-  .services-grid {
-    grid-template-columns: 1fr; /* first image still full width */
+/* Half-row for two images side by side on desktop */
+.half-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+/* ---------------------- Storage Section ---------------------- */
+section[ref] {
+  width: 90%;
+  max-width: 800px;
+  margin: 50px auto;
+}
+
+/* ---------------------- Responsive Adjustments ---------------------- */
+@media (max-width: 1024px) {
+  .hero-section {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
   }
 
-  /* Second and third images side by side */
-  .services-grid > .half-width:nth-child(2),
-  .services-grid > .half-width:nth-child(3) {
-    grid-column: span 1;
+  .hero-image,
+  .hero-text {
+    width: 100%;
   }
 
-  .services-grid {
-    grid-template-columns: 1fr; /* fallback */
+  .hero-text h3 {
+    font-size: 24px;
+    text-align: center;
   }
 
-  .services-grid {
-    display: grid;
-    grid-template-columns: 1fr; /* default for mobile */
-    gap: 30px;
+  .hero-text p {
+    font-size: 16px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Tales of Data stack vertically */
+  .database-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 
-  .services-grid .half-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
+  /* Services Section - stack */
+  .half-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
+
+  .service-card img {
+    height: 200px; /* reduce height on mobile */
+  }
+
+  .service-text strong {
+    font-size: 18px;
+  }
+
+  .service-text p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .database-section,
+  .services-section {
+    padding: 20px;
+  }
+
+  .hero-section {
+    margin: 20px 0;
+    padding: 0 10px;
+  }
+
+  .service-card img,
+  .card-img {
+    height: 180px;
+  }
+
+  .service-text strong,
+  .card-text strong {
+    font-size: 16px;
+  }
+
+  .service-text p,
+  .card-text p {
+    font-size: 13px;
+  }
+}
+/* Scrollbar styling for all browsers */
+
+/* Chrome, Safari, Edge */
+::-webkit-scrollbar {
+  width: 10px; /* width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #f0f0f0; /* track background */
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #43b9ec; /* scrollbar thumb color */
+  border-radius: 5px;
+  border: 2px solid #f0f0f0; /* optional padding around thumb */
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin; /* thin scrollbar */
+  scrollbar-color: #43b9ec #f0f0f0; /* thumb | track */
 }

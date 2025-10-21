@@ -1,3 +1,4 @@
+/* --- Base Header Styles --- */
 .home-header {
   display: flex;
   justify-content: space-between;
@@ -6,11 +7,10 @@
   background-color: #43b9ec;
   color: white;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  position: fixed;
-  width: 98%;
+  position: sticky; /* Changed to sticky for better layout */
+  width: 100%;
   top: 0;
   z-index: 1000;
-  flex-wrap: wrap;
 }
 
 .logo-container {
@@ -22,6 +22,7 @@
   height: 50px;
   width: auto;
   cursor: pointer;
+  border-radius: 4px;
 }
 
 /* 🔗 Right Section (Nav + User Info) */
@@ -42,17 +43,22 @@
   font-size: 16px;
   font-weight: 500;
   text-decoration: none;
-  padding: 6px 12px;
+  padding: 8px 12px;
   border-radius: 6px;
   background: #43b9ec;
-  transition: background 0.3s ease;
-  border: none;
+  transition: background 0.3s ease, transform 0.1s;
+  border: 1px solid transparent;
   cursor: pointer;
 }
 
 .nav-btn:hover {
   background: #13aeec;
 }
+
+.nav-btn:active {
+    transform: scale(0.98);
+}
+
 
 /* 👤 User Info */
 .user-info {
@@ -64,6 +70,10 @@
 .user-name {
   font-size: 16px;
   font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
 }
 
 .avatar-container {
@@ -83,6 +93,11 @@
   font-weight: bold;
   font-size: 14px;
   border: 2px solid white;
+  transition: box-shadow 0.2s;
+}
+
+.generic-avatar:hover {
+    box-shadow: 0 0 0 3px #13aeec;
 }
 
 /* 📂 Dropdown Menu */
@@ -106,12 +121,19 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.dropdown-row:hover {
+    background-color: #f0f0f0;
 }
 
 .dropdown-item {
   cursor: pointer;
   font-size: 14px;
   color: #333;
+  flex-grow: 1;
 }
 
 .dropdown-item:hover {
@@ -120,15 +142,16 @@
 
 .close-btn {
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
   color: #666;
+  margin-left: 10px;
 }
 
 .close-btn:hover {
   color: #000;
 }
 
-/* 🧩 Modal Styles */
+/* --- Modal Styles --- */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -139,7 +162,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 2000;
 }
 
 .modal-box {
@@ -165,12 +188,14 @@
   border-radius: 6px;
   border: 1px solid #ccc;
   font-size: 16px;
+  box-sizing: border-box;
 }
 
 .error-text {
-  color: red;
+  color: #e53e3e;
   font-size: 14px;
   margin-top: 8px;
+  font-weight: 500;
 }
 
 .modal-actions {
@@ -187,11 +212,12 @@
   border: none;
   cursor: pointer;
   font-size: 16px;
+  font-weight: 600;
   transition: all 0.3s ease;
 }
 
 .modal-btn.confirm {
-  background: #2563eb;
+  background: #43b9ec;
   color: #fff;
 }
 
@@ -220,82 +246,93 @@
   }
 }
 
-/* 📱 Responsive Styles */
+/* --- New Mobile/Tablet Styles --- */
 
-/* Small phones */
-@media (max-width: 480px) {
+.menu-icon {
+  display: none; /* Hidden by default on desktop */
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.hamburger-svg {
+    width: 30px;
+    height: 30px;
+    display: block;
+}
+
+/* Tablet and Mobile (up to 768px) */
+@media (max-width: 768px) {
   .home-header {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px;
+    padding: 10px 15px;
+    flex-wrap: nowrap;
   }
 
-  .logo {
-    height: 40px;
+  /* Show the hamburger icon */
+  .menu-icon {
+    display: block; 
+    order: -1; /* Place the hamburger on the far left */
+    margin-right: 15px;
+  }
+  
+  .logo-container {
+      order: -1; /* Move logo next to the menu icon */
   }
 
   .right-section {
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
+    /* Keep user info on the right */
     gap: 10px;
-    margin-top: 5px;
+  }
+  
+  /* Hide the standard nav links */
+  .nav-links {
+    display: none; 
+    position: absolute;
+    top: 60px; /* Adjust based on header height */
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    background-color: #43b9ec; /* Slightly different shade for contrast */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 0;
+    z-index: 999;
   }
 
-  .nav-links {
-    flex-direction: column;
-    width: 100%;
-    gap: 8px;
+  /* Show the nav links when the menu is open */
+  .nav-links.open {
+    display: flex;
   }
 
   .nav-btn {
     width: 100%;
     text-align: left;
-    font-size: 14px;
-    padding: 8px;
+    padding: 12px 20px;
+    border-radius: 0;
+    background: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .nav-btn:last-child {
+      border-bottom: none;
   }
 
+  .user-name {
+    display: none; /* Hide name on small mobile for space */
+  }
+  
+  /* Ensure the user info section is always visible and on the right */
   .user-info {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .user-name {
-    font-size: 14px;
+     margin-left: auto;
+     order: 1;
   }
 }
 
-/* Tablets (portrait and landscape) */
-@media (min-width: 481px) and (max-width: 768px) {
-  .home-header {
-    padding: 10px 15px;
-  }
-
-  .logo {
-    height: 45px;
-  }
-
-  .nav-btn {
-    font-size: 15px;
-    padding: 6px 10px;
-  }
-
-  .user-name {
-    font-size: 15px;
-  }
-}
-
-/* Large tablets and small laptops */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .home-header {
-    padding: 8px 20px;
-  }
-
-  .nav-btn {
-    font-size: 15px;
-  }
-
-  .user-name {
-    font-size: 15px;
+/* Desktop/Large Tablet overrides to hide the hamburger */
+/* Desktop/Laptop adjustment: move right-section slightly to the right */
+@media (min-width: 1025px) {
+  .right-section {
+    margin-right: 30px; /* Adjust this value as needed */
   }
 }
