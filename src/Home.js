@@ -10,11 +10,7 @@ import DataCenter from "./assets/DataCenter.jpg";
 import DataDisaster from "./assets/DataDisaster.jpg";
 
 const Home = ({ user }) => {
-  // ✅ Accept user as a prop
-  // Create a ref for the StorageSlider section
   const storageRef = useRef(null);
-
-  // Function to scroll to StorageSlider
   const scrollToStorage = () => {
     if (storageRef.current) {
       storageRef.current.scrollIntoView({ behavior: "smooth" });
@@ -45,14 +41,22 @@ const Home = ({ user }) => {
           <div className="database-grid">
             {/* Database cards */}
             <div className="database-card">
-              <img src={DataCenter} alt="Database Service 1" className="card-img" />
+              <img
+                src={DataCenter}
+                alt="Database Service 1"
+                className="card-img"
+              />
               <div className="card-text">
                 <strong>Data Center</strong>
                 <p>The Core Infrastructure Powering Digital Operations...</p>
               </div>
             </div>
             <div className="database-card">
-              <img src={DataStore} alt="Database Service 2" className="card-img" />
+              <img
+                src={DataStore}
+                alt="Database Service 2"
+                className="card-img"
+              />
               <div className="card-text">
                 <strong>Data Store</strong>
                 <p>
@@ -61,14 +65,22 @@ const Home = ({ user }) => {
               </div>
             </div>
             <div className="database-card">
-              <img src={DataRestore} alt="Database Service 3" className="card-img" />
+              <img
+                src={DataRestore}
+                alt="Database Service 3"
+                className="card-img"
+              />
               <div className="card-text">
                 <strong>Data Restore</strong>
                 <p>Protecting the digital resources businesses rely on.</p>
               </div>
             </div>
             <div className="database-card">
-              <img src={DataDisaster} alt="Database Service 4" className="card-img" />
+              <img
+                src={DataDisaster}
+                alt="Database Service 4"
+                className="card-img"
+              />
               <div className="card-text">
                 <strong>Data Disaster Recovery</strong>
                 <p>Ensures business continuity during unexpected failures.</p>
@@ -85,11 +97,9 @@ const Home = ({ user }) => {
             <div className="service-card full-width" onClick={scrollToStorage}>
               <img src={DataRestore} alt="Service 1" />
               <div className="service-text">
-                <strong>Service One</strong>
-                <p>
-                  Description for Service One. Highlight the features and
-                  benefits.
-                </p>
+                <strong>Data Storage</strong>
+                <p>₹6,000.00</p>
+                <strong>Shop Now →</strong>
               </div>
             </div>
 
@@ -101,8 +111,9 @@ const Home = ({ user }) => {
               >
                 <img src={DataStore} alt="Service 2" />
                 <div className="service-text">
-                  <strong>Service Two</strong>
-                  <p>Description for Service Two. Brief but informative.</p>
+                  <strong>Data Restore</strong>
+                  <p> ₹10,000.00</p>
+                  <strong>Shop Now →</strong>
                 </div>
               </div>
 
@@ -112,18 +123,17 @@ const Home = ({ user }) => {
               >
                 <img src={DataCenter} alt="Service 3" />
                 <div className="service-text">
-                  <strong>Service Three</strong>
-                  <p>Description for Service Three. Brief but informative.</p>
+                  <strong>Data disaster recovery</strong>
+                  <p> ₹85.00</p>
+                  <strong>Shop Now →</strong>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Storage Selection Section */}
         <section ref={storageRef}>
           <h2>Storage Selection</h2>
-          {/* ✅ Pass user as prop */}
           <StorageSlider uid={user.uid} user={user} />
         </section>
       </main>
