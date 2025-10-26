@@ -8,16 +8,16 @@
   overflow: hidden;
   
   /* Default background for desktop/laptop */
-  background-image: url('./assets/mainpic.jpg');
+  background-image: url('./assets/GoogleLap.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: contain;
   background-repeat: no-repeat;
 }
 
 /* Mobile / tablet background */
 @media (max-width: 1024px) {
   .auth-container {
-    background-image: url('./assets/mainpic.jpg');
+    background-image: url('./assets/GoogleMobile.jpg');
     background-size: cover;
     background-position: center;
   }

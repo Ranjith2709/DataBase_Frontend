@@ -1,7 +1,9 @@
 import React, { useRef } from "react";
 import "./Home.css";
 import StorageSlider from "./StorageSlider";
-import mainpic from "./assets/mainpic.jpg";
+import HomePage from "./assets/HomePage.jpg";
+import GoogleMobile from "./assets/GoogleMobile.jpg";
+import GoogleLap from "./assets/GoogleLap.jpg";
 import image1 from "./assets/image1.jpg";
 import image2 from "./assets/image2.jpg";
 import image3 from "./assets/image3.jpg";
@@ -23,7 +25,7 @@ const Home = ({ user }) => {
     <div className="home-container">
       {/* Hero Section */}
       <section className="hero-section">
-        <img src={mainpic} alt="Data Recovery Hero" className="hero-image" />
+        <img src={HomePage} alt="Data Recovery Hero" className="hero-image" />
         <div className="hero-text">
           <h3>FLEXINODE Expert Data Recovery Services</h3>
           <p>

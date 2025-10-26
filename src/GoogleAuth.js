@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { auth, googleProvider } from "./firebase";
 import { useNavigate } from "react-router-dom";
 import "./GoogleAuth.css";
-import bgImage from "./assets/coverl.jpg";
 
 
 const GoogleAuth = () => {
