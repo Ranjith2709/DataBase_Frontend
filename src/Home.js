@@ -4,10 +4,10 @@ import StorageSlider from "./StorageSlider";
 import HomePage from "./assets/HomePage.jpg";
 import GoogleMobile from "./assets/GoogleMobile.jpg";
 import GoogleLap from "./assets/GoogleLap.jpg";
-import image1 from "./assets/image1.jpg";
-import image2 from "./assets/image2.jpg";
-import image3 from "./assets/image3.jpg";
-import image4 from "./assets/image4.jpg";
+import DataRestore from "./assets/DataRestore.jpg";
+import DataStore from "./assets/DataStore.jpg";
+import DataCenter from "./assets/DataCenter.jpg";
+import DataDisaster from "./assets/DataDisaster.jpg";
 
 const Home = ({ user }) => {
   // ✅ Accept user as a prop
@@ -45,14 +45,14 @@ const Home = ({ user }) => {
           <div className="database-grid">
             {/* Database cards */}
             <div className="database-card">
-              <img src={image3} alt="Database Service 1" className="card-img" />
+              <img src={DataCenter} alt="Database Service 1" className="card-img" />
               <div className="card-text">
                 <strong>Data Center</strong>
                 <p>The Core Infrastructure Powering Digital Operations...</p>
               </div>
             </div>
             <div className="database-card">
-              <img src={image2} alt="Database Service 2" className="card-img" />
+              <img src={DataStore} alt="Database Service 2" className="card-img" />
               <div className="card-text">
                 <strong>Data Store</strong>
                 <p>
@@ -61,14 +61,14 @@ const Home = ({ user }) => {
               </div>
             </div>
             <div className="database-card">
-              <img src={image1} alt="Database Service 3" className="card-img" />
+              <img src={DataRestore} alt="Database Service 3" className="card-img" />
               <div className="card-text">
                 <strong>Data Restore</strong>
                 <p>Protecting the digital resources businesses rely on.</p>
               </div>
             </div>
             <div className="database-card">
-              <img src={image4} alt="Database Service 4" className="card-img" />
+              <img src={DataDisaster} alt="Database Service 4" className="card-img" />
               <div className="card-text">
                 <strong>Data Disaster Recovery</strong>
                 <p>Ensures business continuity during unexpected failures.</p>
@@ -83,7 +83,7 @@ const Home = ({ user }) => {
           <div className="services-grid">
             {/* Full-width horizontal image */}
             <div className="service-card full-width" onClick={scrollToStorage}>
-              <img src={image1} alt="Service 1" />
+              <img src={DataRestore} alt="Service 1" />
               <div className="service-text">
                 <strong>Service One</strong>
                 <p>
@@ -99,7 +99,7 @@ const Home = ({ user }) => {
                 className="service-card half-width"
                 onClick={scrollToStorage}
               >
-                <img src={image2} alt="Service 2" />
+                <img src={DataStore} alt="Service 2" />
                 <div className="service-text">
                   <strong>Service Two</strong>
                   <p>Description for Service Two. Brief but informative.</p>
@@ -110,7 +110,7 @@ const Home = ({ user }) => {
                 className="service-card half-width"
                 onClick={scrollToStorage}
               >
-                <img src={image3} alt="Service 3" />
+                <img src={DataCenter} alt="Service 3" />
                 <div className="service-text">
                   <strong>Service Three</strong>
                   <p>Description for Service Three. Brief but informative.</p>
