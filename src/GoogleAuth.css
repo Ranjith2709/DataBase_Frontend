@@ -7,14 +7,13 @@
   font-family: Arial, sans-serif;
   overflow: hidden;
   
-  /* Default background for desktop/laptop */
   background-image: url('./assets/GoogleLap.jpg');
   background-size: cover;
   background-position: contain;
   background-repeat: no-repeat;
 }
 
-/* Mobile / tablet background */
+
 @media (max-width: 1024px) {
   .auth-container {
     background-image: url('./assets/GoogleMobile.jpg');
@@ -23,7 +22,6 @@
   }
 }
 
-/* Keep your existing card styling */
 .auth-card {
   background: #fff;
   padding: 20px;
@@ -34,8 +32,6 @@
   width: 350px;
   max-width: 90%;
 }
-
-/* ... rest of your CSS ... */
 
 
 .auth-title {

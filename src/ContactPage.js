@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { FaWhatsapp } from "react-icons/fa"; // WhatsApp icon
+import { FaWhatsapp } from "react-icons/fa"; 
 import "./ContactPage.css";
 
 const ContactPage = () => {
