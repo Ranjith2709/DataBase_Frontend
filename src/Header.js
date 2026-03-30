@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { auth } from "./firebase";
 import { Link, useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "./config";
 import logo from "./assets/fnlogo.jpg";
 import "./Header.css";
 
@@ -50,8 +51,7 @@ const Header = ({ user }) => {
     }
 
     try {
-      // NOTE: Using the user's provided local fetch endpoint
-      const res = await fetch("http://localhost:5000/api/admin/login", {
+      const res = await fetch(`${API_BASE_URL}/api/admin/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password }),

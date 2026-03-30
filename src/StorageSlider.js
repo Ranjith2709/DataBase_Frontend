@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { QRCodeSVG } from "qrcode.react";
+import { API_BASE_URL } from "./config";
 import "./StorageSlider.css";
 
 const StorageSlider = ({ uid, user }) => {
@@ -33,7 +34,7 @@ const StorageSlider = ({ uid, user }) => {
       const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
       // 1️⃣ Call backend to save payment
-      const response = await fetch("http://localhost:5000/api/payments", {
+      const response = await fetch(`${API_BASE_URL}/api/payments`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -2,8 +2,6 @@ import React, { useRef } from "react";
 import "./Home.css";
 import StorageSlider from "./StorageSlider";
 import HomePage from "./assets/HomePage.jpg";
-import GoogleMobile from "./assets/GoogleMobile.jpg";
-import GoogleLap from "./assets/GoogleLap.jpg";
 import DataRestore from "./assets/DataRestore.jpg";
 import DataStore from "./assets/DataStore.jpg";
 import DataCenter from "./assets/DataCenter.jpg";

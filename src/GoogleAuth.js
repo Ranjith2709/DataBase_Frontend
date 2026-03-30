@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { auth, googleProvider } from "./firebase";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "./config";
 import "./GoogleAuth.css";
 
 
@@ -24,7 +25,7 @@ const GoogleAuth = () => {
 
   useEffect(() => {
     if (user) {
-      fetch("http://localhost:5000/api/users", {
+      fetch(`${API_BASE_URL}/api/users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
