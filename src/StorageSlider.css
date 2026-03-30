@@ -53,6 +53,7 @@ body {
 .styled-slider {
   width: 100%;
   -webkit-appearance: none;
+  appearance: none;
   background: #d3d3d3;
   outline: none;
   height: 8px;
@@ -63,6 +64,7 @@ body {
 
 .styled-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
+  appearance: none;
   width: 20px;
   height: 20px;
   background: #007bff;
@@ -199,6 +201,112 @@ body {
   font-size: 0.95rem;
   color: #666;
   margin-bottom: 10px;
+}
+
+.ios-upi-options {
+  margin-top: 15px;
+  width: 100%;
+  text-align: center;
+  padding-top: 10px;
+  border-top: 1px solid #e3e8ee;
+}
+
+.ios-upi-options p {
+  margin: 0 0 10px 0;
+  color: #4f5b67;
+  font-size: 0.9rem;
+}
+
+.ios-upi-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.secondary-btn {
+  width: 100%;
+  max-width: 250px;
+  margin: 0 auto;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid #b9c7d8;
+  background: #ffffff;
+  color: #2d3f54;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.secondary-btn:hover {
+  background: #f0f6ff;
+  border-color: #8eb5dd;
+}
+
+.app-row-content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.app-icon {
+  width: 34px;
+  min-width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.app-icon-gpay {
+  background: linear-gradient(140deg, #1a73e8, #34a853);
+}
+
+.app-icon-phonepe {
+  background: linear-gradient(140deg, #5f259f, #7a3ec8);
+}
+
+.app-icon-paytm {
+  background: linear-gradient(140deg, #00aef0, #003b95);
+}
+
+.app-icon-bhim {
+  background: linear-gradient(140deg, #f57c00, #1b5e20);
+}
+
+.app-icon-any-upi {
+  background: linear-gradient(140deg, #4f5b67, #2d3f54);
+}
+
+.app-text-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.app-main-label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1c2e42;
+}
+
+.app-sub-label {
+  font-size: 0.76rem;
+  color: #5f6d7b;
+}
+
+.copy-status {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: #1f6d2d;
 }
 
 /* 🔹 Mobile & Tablet Responsive Styling */

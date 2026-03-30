@@ -7,6 +7,8 @@ const StorageSlider = ({ uid, user }) => {
   const [value, setValue] = useState(1);
   const [upiNumber, setUpiNumber] = useState("");
   const [showQRCode, setShowQRCode] = useState(false);
+  const [showAppOptions, setShowAppOptions] = useState(false);
+  const [copyStatus, setCopyStatus] = useState("");
 
   const pricePerGB = 1;
   const gbPerStep = 1;
@@ -16,24 +18,114 @@ const StorageSlider = ({ uid, user }) => {
 
   const upiId = "vrraju27@ybl";
   const payeeName = "V Ranjith Raju";
+  const upiQuery = `pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(
+    payeeName
+  )}&am=${totalPrice}&cu=INR`;
   const upiUrl = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(
     payeeName
   )}&am=${totalPrice}&cu=INR`;
 
   const isUpiNumberValid = upiNumber.length === 10 && /^\d+$/.test(upiNumber);
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const isAndroid = /Android/i.test(navigator.userAgent);
+  const isIos = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+  const appCatalog = {
+    gpay: {
+      key: "gpay",
+      label: "Google Pay",
+      shortLabel: "G",
+      iconClass: "app-icon-gpay",
+      hint: "Recommended for iPhone",
+      url: isAndroid
+        ? `intent://pay?${upiQuery}#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end`
+        : `gpay://upi/pay?${upiQuery}`,
+    },
+    phonepe: {
+      key: "phonepe",
+      label: "PhonePe",
+      shortLabel: "P",
+      iconClass: "app-icon-phonepe",
+      hint: "Popular UPI app",
+      url: isAndroid
+        ? `intent://pay?${upiQuery}#Intent;scheme=upi;package=com.phonepe.app;end`
+        : `phonepe://pay?${upiQuery}`,
+    },
+    paytm: {
+      key: "paytm",
+      label: "Paytm",
+      shortLabel: "PT",
+      iconClass: "app-icon-paytm",
+      hint: "Wallet + UPI",
+      url: isAndroid
+        ? `intent://pay?${upiQuery}#Intent;scheme=upi;package=net.one97.paytm;end`
+        : `paytmmp://pay?${upiQuery}`,
+    },
+    bhim: {
+      key: "bhim",
+      label: "BHIM",
+      shortLabel: "B",
+      iconClass: "app-icon-bhim",
+      hint: "NPCI app",
+      url: isAndroid
+        ? `intent://pay?${upiQuery}#Intent;scheme=upi;package=in.org.npci.upiapp;end`
+        : `bhim://upi/pay?${upiQuery}`,
+    },
+    anyUpi: {
+      key: "any-upi",
+      label: "Any UPI App",
+      shortLabel: "UPI",
+      iconClass: "app-icon-any-upi",
+      hint: "Use system default",
+      url: upiUrl,
+    },
+  };
+
+  const appOrder = isIos
+    ? ["gpay", "phonepe", "paytm", "bhim", "anyUpi"]
+    : ["phonepe", "gpay", "paytm", "bhim", "anyUpi"];
+
+  const mobilePaymentApps = appOrder.map((appKey) => appCatalog[appKey]);
 
   const handleChange = (e) => {
     setValue(Number(e.target.value));
     setShowQRCode(false); // Hide QR code when slider changes
+    setShowAppOptions(false);
+    setCopyStatus("");
+  };
+
+  const openPaymentApp = (url) => {
+    window.location.href = url;
+  };
+
+  const copyToClipboard = async (text) => {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-9999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+      }
+      setCopyStatus("Copied");
+      setTimeout(() => setCopyStatus(""), 2000);
+    } catch {
+      setCopyStatus("Copy failed");
+      setTimeout(() => setCopyStatus(""), 2000);
+    }
   };
 
   const handlePay = async () => {
     if (!user) return alert("Login required!");
 
     try {
-      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-      // 1️⃣ Call backend to save payment
+      // Save payment request in backend first
       const response = await fetch(`${API_BASE_URL}/api/payments`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -50,10 +142,14 @@ const StorageSlider = ({ uid, user }) => {
       });
 
       const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || "Payment initialization failed");
+      }
+
       console.log("Payment processed:", data);
 
       if (isMobile) {
-        window.location.href = upiUrl;
+        setShowAppOptions(true);
       } else {
         setShowQRCode(true); // show QR code for desktop
       }
@@ -119,8 +215,8 @@ const StorageSlider = ({ uid, user }) => {
           ) : (
             <div className="pay-button-container">
               <p>
-                {/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
-                  ? "Tap below to open your UPI app"
+                {isMobile
+                  ? "Tap below and choose your UPI app"
                   : "Generate QR code to pay with your UPI app"}
               </p>
               <button
@@ -130,6 +226,43 @@ const StorageSlider = ({ uid, user }) => {
               >
                 Pay ₹{totalPrice} via UPI
               </button>
+
+              {showAppOptions && isMobile && (
+                <div className="ios-upi-options">
+                  <p>
+                    Select the app you want to pay with.
+                  </p>
+                  <div className="ios-upi-actions">
+                    {mobilePaymentApps.map((app) => (
+                      <button
+                        key={app.key}
+                        className="secondary-btn"
+                        onClick={() => openPaymentApp(app.url)}
+                      >
+                        <span className="app-row-content">
+                          <span className={`app-icon ${app.iconClass}`}>
+                            {app.shortLabel}
+                          </span>
+                          <span className="app-text-block">
+                            <span className="app-main-label">Pay with {app.label}</span>
+                            <span className="app-sub-label">{app.hint}</span>
+                          </span>
+                        </span>
+                      </button>
+                    ))}
+                    <button
+                      className="secondary-btn"
+                      onClick={() => copyToClipboard(upiId)}
+                    >
+                      Copy UPI ID
+                    </button>
+                  </div>
+                  <p className="copy-status">
+                    If an app does not open, install it or use Any UPI App.
+                  </p>
+                  {copyStatus && <p className="copy-status">{copyStatus}</p>}
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -139,4 +272,3 @@ const StorageSlider = ({ uid, user }) => {
 };
 
 export default StorageSlider;
-//all my changes the pushed to git main
